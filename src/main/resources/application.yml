@@ -1,0 +1,49 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: sb3-keycloak
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/sb3-keycloak
+          jwk-set-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/auth
+            token-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/token
+          keycloak2:
+            issuer-uri: http://localhost:8180/realms/sb3-keycloak
+            authorization-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/auth
+            token-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/token
+            jwk-set-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/certs
+            user-info-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: sb3-keycloak-api
+            client-secret: YbR6xAcGeV44G8c0pzliVxS78B44La6m
+            authorization-grant-type: client_credentials
+          keycloak2:
+            provider: keycloak
+            client-id: sb3-keycloak-api
+            client-secret: YbR6xAcGeV44G8c0pzliVxS78B44La6m
+            authorization-grant-type: client_credentials
+            #redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - "openid"
+          #              - "profile"
+          #              - "email"
+          #              - "offline_access"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    webclient:
+      enabled: true
