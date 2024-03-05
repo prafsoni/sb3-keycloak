@@ -1,0 +1,3 @@
+= SB3 Keycloak
+
+This repo parks some code that I played around with spring boot 3 and keycloak.
