@@ -1,0 +1,8 @@
+# Bootstrap components
+org.springframework.cloud.bootstrap.BootstrapConfiguration=\
+org.pksprojects.sb3configclientoauth2support.ConfigClientOAuth2BootstrapConfiguration
+
+# Spring Boot BootstrapRegistryInitializers
+org.springframework.boot.BootstrapRegistryInitializer=\
+org.pksprojects.sb3configclientoauth2support.ConfigClientOAuth2BootstrapRegistryInitializer,\
+org.pksprojects.sb3configclientoauth2support.ConfigClientOAuth2RetryBootstrapper

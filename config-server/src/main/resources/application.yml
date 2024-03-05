@@ -1,0 +1,42 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - classpath:configDir/
+  profiles:
+    include: native
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/sb3-keycloak
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/realms/sb3-keycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-name: keycloak
+            client-id: sb3-config-server-ui
+            authorization-grant-type: authorization_code
+            scope:
+              - "openid"
+
+eureka:
+  client:
+#    enabled: false
+    oauth2:
+      client-id: sb3-eureka-client
+      client-secret: f8J8ynDQWNd6yh5Os8HZM0I7s3n8FONE
+      access-token-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/token
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

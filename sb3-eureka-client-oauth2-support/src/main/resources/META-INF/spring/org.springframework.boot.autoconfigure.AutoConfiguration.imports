@@ -1,0 +1,2 @@
+org.pksprojects.sb3eurekaclientoauth2support.servlet.EurekaClientOAuth2AutoConfiguration
+org.pksprojects.sb3eurekaclientoauth2support.reactive.EurekaWebClientOAuth2AutoConfiguration

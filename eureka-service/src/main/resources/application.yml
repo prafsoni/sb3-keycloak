@@ -1,0 +1,52 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-service
+#  cloud:
+#    discovery:
+#      enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/sb3-keycloak
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/realms/sb3-keycloak
+            authorization-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/auth
+            token-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/token
+            jwk-set-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/certs
+            user-info-uri: http://localhost:8180/realms/sb3-keycloak/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: sb3-keycloak-api
+            client-secret: YbR6xAcGeV44G8c0pzliVxS78B44La6m
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - "openid"
+              - "profile"
+              - "email"
+              - "offline_access"
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
+  instance:
+    hostname: localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
